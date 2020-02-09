@@ -3,6 +3,9 @@
  */
 package org.datastructure.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author vicky
  *
@@ -12,73 +15,136 @@ public class BinaryTree {
 	Node root;
 
 	/**
-	 * getInOrder() method traverses the Binary Tree in InOrder and returns array of
+	 * getInOrder() method traverses the Binary Tree in InOrder and returns List of
 	 * elements of the Binary Tree
 	 */
 
-	public int[] getInOrder() {
+	public List<Integer> getInOrder() {
 
-		String str[] = getInOrderPrivate(root).split(" ");
-		int arr[] = new int[str.length];
-		for (int i = 0; i < str.length; i++) {
-			arr[i] = Integer.parseInt(str[i]);
+		// Creating ArrayList object type Integer
+		List<Integer> arr = new ArrayList<>();
+
+		// creating currentNode and assigning root to currentNode
+		Node currentNode = root;
+		// checking currentNode is null return empty list
+		if (currentNode == null) {
+			return arr;
+		}
+		try {
+			// creating s Stack object type of Node
+			Stack<Node> s = new Stack<>();
+			// creating done variable type of boolean and assign false
+			boolean done = false;
+
+			// running a loop until whole tree is not visited
+			while (!done) {
+
+				if (currentNode != null) {
+					s.push(currentNode);
+					currentNode = currentNode.left;
+				} else {
+					if (s.isEmpty()) {
+						done = true;
+					} else {
+						currentNode = s.pop();
+						arr.add(currentNode.data);
+						currentNode = currentNode.right;
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.print(e);
 		}
 
 		return arr;
-
-	}
-
-	private String getInOrderPrivate(Node root) {
-		if (root == null) {
-			return "";
-		}
-
-		return getInOrderPrivate(root.left) + "" + root.data + " " + getInOrderPrivate(root.right);
 
 	}
 
 	/*
 	 * travelPreOrder method prints all the tree elements preorder visit
 	 */
-	public int[] getPreOrder() {
-		String str[] = getPreOrderPrivate(root).split(" ");
-		int arr[] = new int[str.length];
-//		for (int i = 0; i < str.length; i++) {
-//			arr[i] = Integer.parseInt(str[i]);
-//		}
-		return arr;
-	}
+	public List<Integer> getPreOrder() {
+		// Creating ArrayList object type Integer
+		List<Integer> arr = new ArrayList<>();
 
-	/*
-	 * travelPreOrder method takes input root of binary search tree and prints all
-	 * the tree elements in preorder visit
-	 */
-	private String getPreOrderPrivate(Node node) {
-		if (root == null) {
-			return "";
+		// creating currentNode and assigning root to currentNode
+		Node currentNode = root;
+		// checking currentNode is null return empty list
+		if (currentNode == null) {
+			return arr;
 		}
-		return root.data + " " + getPreOrderPrivate(root.left) + "" + getPreOrderPrivate(root.right);
+		try {
+			// creating s Stack object type of Node
+			Stack<Node> s = new Stack<>();
+			s.push(currentNode);
 
+			// running a loop until whole tree is not visited
+			while (!s.isEmpty()) {
+				Node temp = s.pop();
+				arr.add(temp.data);
+				if (temp.right != null) {
+					s.push(temp.right);
+				}
+				if (temp.left != null) {
+					s.push(temp.left);
+				}
+
+			}
+
+		} catch (Exception e) {
+			System.out.print(e);
+		}
+
+		return arr;
 	}
 
 	/**
 	 * This is post order traversal method . It calls private travelPostOrder method
 	 */
-	public void getPostOrder() {
-		String str = getPostOrderPrivate(root);
-		System.out.println(str);
-	}
+	public List<Integer> getPostOrder() {
+		// Creating ArrayList object type Integer
+		List<Integer> arr = new ArrayList<>();
 
-	/*
-	 * This is post order traversal.It has one parameter node. It prints all the
-	 * data of binary search tree
-	 */
-	private String getPostOrderPrivate(Node root) {
+		// creating currentNode and assigning root to currentNode
+
+		// checking currentNode is null return empty list
 		if (root == null) {
-			return "";
+			return arr;
+		}
+		try {
+			// creating s Stack object type of Node
+			Stack<Node> s = new Stack<>();
+			s.push(root);
+			Node prev = null;
+
+			// running a loop until whole tree is not visited
+			while (!s.isEmpty()) {
+				Node curr = s.getPeek();
+
+				if (prev == null || prev.left == curr || prev.right == curr) {
+					if (curr.left != null) {
+						s.push(curr.left);
+					} else if (curr.right != null) {
+						s.push(curr.right);
+					}
+				} else if (curr.left == prev) {
+					if (curr.right != null) {
+						s.push(curr.right);
+					}
+				} else {
+					arr.add(curr.data);
+					s.pop();
+				}
+				prev = curr;
+
+			}
+
+		} catch (Exception e) {
+			System.out.print(e);
 		}
 
-		return getPostOrderPrivate(root.left) + "" + getPostOrderPrivate(root.right) + " " + root.data;
+		return arr;
 
 	}
 
@@ -133,14 +199,14 @@ public class BinaryTree {
 	 * return it
 	 */
 	public int countBranches() {
-		return countBranchesPrivate(root);
+		return countBranches(root);
 	}
 
 	/*
 	 * countBranchesPrivate method takes input root of binary search tree , count
 	 * the number of branches in it and return count of branches .
 	 */
-	private int countBranchesPrivate(Node root) {
+	private int countBranches(Node root) {
 		if (root == null) {
 			return 0;
 		}
@@ -148,7 +214,7 @@ public class BinaryTree {
 		if (root.left == null && root.right == null) {
 			return 1;
 		}
-		return (countBranchesPrivate(root.left) + countBranchesPrivate(root.right));
+		return (countBranches(root.left) + countBranches(root.right));
 	}
 
 	public int countInternalNodes() {
