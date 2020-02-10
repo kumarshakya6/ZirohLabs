@@ -83,6 +83,77 @@ public class BinarySearchTree extends BinaryTree {
 	}
 
 	/*
+	 * This is method is takes root and key of the node and return the height of the
+	 * of given node
+	 */
+
+	private int getHeightGivenNode(Node root, int data) {
+		if (root == null)
+			return -1;
+
+		if (root.data == data) {
+			return 0;
+		}
+
+		if (root.data < data) {
+			return 1 + getHeightGivenNode(root.right, data);
+		} else {
+			return 1 + getHeightGivenNode(root.left, data);
+		}
+	}
+
+	public int getLeftMostSibling(int data) {
+		int height = getHeightGivenNode(root, data);
+		return getLeftMostSibling(root, data, height);
+
+	}
+
+	private int getLeftMostSibling(Node root, int data, int height) {
+		if (height == 0 && data != root.data) {
+
+			return root.data;
+		} else if (height > -1) {
+
+			if (root.right != null) {
+				return getLeftMostSibling(root.right, data, height - 1);
+			}
+			if (root.left != null) {
+				return getLeftMostSibling(root.left, data, height - 1);
+			}
+		}
+
+		return -1;
+	}
+
+	/**
+	 * This method is get the given data Right most sibling if exists else return
+	 * -1;
+	 */
+	public int getRightMostSibling(int data) {
+		int height = getHeight();
+		return getRightMostSibling(root, data, height);
+
+	}
+
+	private int getRightMostSibling(Node root, int data, int height) {
+
+		if (height == 0 && data != root.data) {
+
+			return root.data;
+		} else if (height > -1) {
+			if (root.right != null) {
+				return getRightMostSibling(root.right, data, height - 1);
+			}
+			if (root.left != null) {
+				return getRightMostSibling(root.left, data, height - 1);
+			}
+		}
+
+		return -1;
+
+	}
+
+	/*
 	 * findMinValueNode method search the minimum value of binary search tree and
 	 * return it and if tree is null than It return -1
 	 */

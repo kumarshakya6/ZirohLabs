@@ -15,6 +15,52 @@ public class BinaryTree {
 	Node root;
 
 	/**
+	 * This method is get the given data Left most sibling if it exists else return
+	 * the -1;
+	 */
+
+	/**
+	 * Largest sum of a branch.
+	 */
+
+	public int getLargestSumOfBranch() throws TreeIsEmptyException {
+		if (root != null)
+			return getLargestSumOfBranch(root);
+
+		throw new TreeIsEmptyException("Tree is empty");
+	}
+
+	private int getLargestSumOfBranch(Node root) {
+		if (root == null)
+			return 0;
+		if (root.left == null && root.right == null)
+			return root.data;
+
+		return root.data + Math.max(getLargestSumOfBranch(root.left), getLargestSumOfBranch(root.right));
+	}
+
+	/**
+	 * Smallest sum of a branch.
+	 */
+	public int getSmallestSumOfBranch() throws TreeIsEmptyException {
+		if (root != null)
+			return getSmallestSumOfBranch(root);
+
+		throw new TreeIsEmptyException("Tree is Empty");
+	}
+
+	private int getSmallestSumOfBranch(Node root) {
+		if (root == null) {
+			return 0;
+		}
+		if (root.left == null && root.right == null) {
+			return root.data;
+		}
+
+		return root.data + Math.min(getSmallestSumOfBranch(root.left), getSmallestSumOfBranch(root.right));
+	}
+
+	/**
 	 * getInOrder() method traverses the Binary Tree in InOrder and returns List of
 	 * elements of the Binary Tree
 	 */
@@ -61,7 +107,7 @@ public class BinaryTree {
 
 	}
 
-	/*
+	/**
 	 * travelPreOrder method prints all the tree elements preorder visit
 	 */
 	public List<Integer> getPreOrder() {
@@ -233,7 +279,7 @@ public class BinaryTree {
 	 * countHeight method counts the height of the binary search tree and return it
 	 */
 
-	public int countHeight() {
+	public int getHeight() {
 		return countHeightPrivate(root);
 	}
 
