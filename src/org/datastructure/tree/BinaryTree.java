@@ -15,15 +15,85 @@ public class BinaryTree {
 	Node root;
 
 	/**
-	 * This method is get the given data Left most sibling if it exists else return
-	 * the -1;
+	 * getLargestSumBranch() method find maximum sum of branch and return List of
+	 * whole branch keys. and if tree do not has any key. It throws
+	 * TreeIsEmptyException.
 	 */
+
+	public List<Integer> getLargestSumBranch() throws TreeIsEmptyException {
+
+		if (root != null) {
+			// getLargestSumBranch() method returns a Branch type object
+			Branch outputPrintBranch = getLargestSumBranch(root);
+			// returns the List of elements of Largest sum Branch
+			return outputPrintBranch.elements;
+		}
+
+		// if tree do not has any node than throw TreeIsEmptyException
+		throw new TreeIsEmptyException("Tree is empty");
+	}
+
+	// getLargestSumBranch() finds largest sum of branch and return Branch Object
+	// that has
+	// largest sum branch all elements and sum of that branch.
+	private Branch getLargestSumBranch(Node root) {
+		// creates a branch class object with root node data ;
+		Branch branchOutput = new Branch(root.data, root.data);
+
+		// if tree has only root node returns
+		if (root.left == null && root.right == null) {
+			return branchOutput;
+		}
+
+		// creates Left subtree and Right subtree branch objects
+		Branch branchOfLeft, branchOfRight;
+
+		// if right node null, calculate only left subtree and return it
+		if (root.right == null) {
+
+			branchOfLeft = getLargestSumBranch(root.left);
+			branchOfLeft.sum += root.data;
+			branchOfLeft.elements.add(0, root.data);
+			return branchOfLeft;
+
+		}
+		// if left node null, calculate only right subtree and return it
+
+		else if (root.left == null) {
+			branchOfRight = getLargestSumBranch(root.right);
+			branchOfRight.sum += root.data;
+			branchOfRight.elements.add(0, root.data);
+			return branchOutput;
+		}
+		// calculates left subtree and hold returns branch object by branchOfLeft
+		branchOfLeft = getLargestSumBranch(root.left);
+		branchOfLeft.sum += root.data;
+		branchOfLeft.elements.add(0, root.data);
+
+		// calculates right subtree and hold returns branch object by branchOfRight
+		branchOfRight = getLargestSumBranch(root.right);
+		branchOfRight.sum += root.data;
+		branchOfRight.elements.add(0, root.data);
+
+		// calls maxSumBranch() method gives two parameters Left and Right subtree
+		// and return max Sum Branch object.
+		return maxSumBranch(branchOfLeft, branchOfRight);
+	}
+
+	// TODO:
+	private Branch maxSumBranch(Branch branch1, Branch branch2) {
+		if (branch1.sum > branch2.sum) {
+			return branch1;
+		}
+		return branch2;
+	}
 
 	/**
 	 * Largest sum of a branch.
 	 */
 
 	public int getLargestSumOfBranch() throws TreeIsEmptyException {
+
 		if (root != null)
 			return getLargestSumOfBranch(root);
 

@@ -38,22 +38,25 @@ public class DemoTree {
 		obj.insert(5);
 		obj.insert(20);
 		obj.insert(17);
-		// obj.insert(0);
-		obj.insert(10);
+
+		obj.insert(50);
+		obj.insert(9);
+		obj.insert(40);
 		obj.insert(100);
-		obj.insert(110);
-		obj.insert(130);
 		obj.insert(1);
-		obj.insert(17);
-		obj.insert(110);
-		obj.insert(130);
-		obj.insert(1);
+
 		List<Integer> arr = obj.getInOrder();
 		for (int e : arr) {
 			System.out.print(e + " ");
 		}
 		System.out.println();
 		System.out.println(obj.getLargestSumOfBranch());
+
+		List<Integer> largestSumBranch = obj.getLargestSumBranch();
+		for (Integer e : largestSumBranch) {
+			System.out.print(e + " ");
+		}
+		System.out.println();
 
 //		System.out.println("\n" + arr.length);
 //		int temp = obj.getNumOfBranches_K_Height(2);

@@ -1,10 +1,14 @@
 package oops.pen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //This is a class of general Pen
 public class Pen {
 
 	private Ink ink = new Ink();
 	int maxQuantityOfInk = 1000;
+	List<Person> personCollection = null;
 
 	public String getColorOfInk() {
 		return ink.getColorOfInk();
@@ -34,27 +38,37 @@ public class Pen {
 		} else {
 			ink.setQuantityOfInk(quantityOfInk);
 		}
+		personCollection = new ArrayList<>();
+		personCollection.add(new Manager());
+		personCollection.add(new CareTaker());
+		personCollection.add(new Worker());
 	}
 
 	// refill method is used to again fill the refill of Pen
 	// there is a parameter of n is integer type
 	void refill(int n) {
 		System.out.println("Ink is filled.");
-		ink.setQuantityOfInk(ink.getQuantityOfInk() + n);
+		ink.quantityOfInk += n;
 
 	}
 
-	void refill() {
+	void write(String str) {
+		int n = str.length();
+		System.out.println("It writes " + ink.colorOfInk);
+		if (ink.quantityOfInk >= n) {
 
-	}
+			ink.quantityOfInk = ink.quantityOfInk - n;
+			System.out.println(str);
 
-	void write(int n) {
-		System.out.println("It writes " + ink.getColorOfInk());
-		if (ink.getQuantityOfInk() >= n) {
-			ink.setQuantityOfInk(ink.getQuantityOfInk() - n);
 		} else {
-			System.out.println("Please refill the Pen.");
-			System.out.println("Minimum quantity of refill is " + (ink.getQuantityOfInk() - n));
+			for (int index = 0; index < ink.quantityOfInk; index++) {
+				System.out.print(str.charAt(index));
+			}
+			ink.quantityOfInk = 0;
+			System.out.println();
+			for (Person p : personCollection) {
+				p.notify("In pen ,There is no ink, so Please refill it.");
+			}
 
 		}
 

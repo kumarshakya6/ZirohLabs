@@ -1,5 +1,9 @@
 package oops.pen;
 
+/*
+ * This Ink class has two fields. One is colorOfInk and second one is 
+ * quantityOfInk and also defined setter and getter methods for those fields 
+ * */
 public class Ink {
 	String colorOfInk;
 	int quantityOfInk;
