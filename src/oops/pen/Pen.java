@@ -1,6 +1,5 @@
 package oops.pen;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //This is a class of general Pen
@@ -38,10 +37,7 @@ public class Pen {
 		} else {
 			ink.setQuantityOfInk(quantityOfInk);
 		}
-		personCollection = new ArrayList<>();
-		personCollection.add(new Manager());
-		personCollection.add(new CareTaker());
-		personCollection.add(new Worker());
+
 	}
 
 	// refill method is used to again fill the refill of Pen
