@@ -3,21 +3,21 @@
  */
 package org.datastructure.generic;
 
-/*
- * 
- * This is the basic node class of tree It have tree properties left of Node it
- * is Node type right of Node it is Node type data of Node it is generic type
+/**
+ * This is the node class of tree It have tree properties. left Node reference
+ * variable that holds left node of tree right Node reference that holds the
+ * right node of tree and data holds the key value of the Node
  */
-public class Node<T> {
+class Node<T> {
 	T data;
 
+	// Declares left and right Node<T> type reference variables
 	Node<T> left, right;
 
-	/*
-	 * This is the user define contractor It has only one parameter that data it's
-	 * Generic type
+	/**
+	 * This is contractor It has only one parameter that data value of node
 	 */
-	public Node(T data) {
+	Node(T data) {
 		right = left = null;
 		this.data = data;
 

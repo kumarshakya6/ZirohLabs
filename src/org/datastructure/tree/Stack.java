@@ -13,7 +13,7 @@ import java.util.List;
 public class Stack<T> {
 	private int top = -1;
 
-	List<T> s = new ArrayList<>();
+	List<T> s = new ArrayList<T>();
 
 	public void push(T data) throws StackOverFlowException {
 		pushPrivate(data);
@@ -60,12 +60,12 @@ public class Stack<T> {
 		}
 	}
 
-	public T getPeek() throws StackIsEmpty {
+	public T getPeek() throws EmptyStackException {
 		if (!isEmpty()) {
 			return s.get(top);
 		}
 
-		throw new StackIsEmpty("Stack is Empty");
+		throw new EmptyStackException("Stack is Empty");
 
 	}
 

@@ -1,6 +1,5 @@
-/**
- * 
- */
+
+//TODO: add comments in this class 
 package org.datastructure.generic;
 
 /**

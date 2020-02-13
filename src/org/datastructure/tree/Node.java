@@ -11,14 +11,14 @@ package org.datastructure.tree;
 public class Node {
 	int data;
 
-	Node left, right;
+	Node left, right, parent;
 
 	/*
 	 * This is the user define contractor It has only one parameter that data it's
 	 * integer type
 	 */
 	public Node(int data) {
-		right = left = null;
+		right = left = parent = null;
 		this.data = data;
 
 	}

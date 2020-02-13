@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Queue<T> {
 
-	List<T> q = new ArrayList<>();
+	List<T> q = new ArrayList<T>();
 
 	public void add(T data) {
 		q.add(data);

@@ -6,7 +6,7 @@ public class DemoTree {
 
 	public static void main(String[] args) throws TreeIsEmptyException {
 
-		BinarySearchTree<Integer> intTree = new BinarySearchTree<>();
+		BinarySearchTree<Integer> intTree = new BinarySearchTree<Integer>();
 		intTree.insert(10);
 		System.out.println(intTree.search(10));
 		intTree.insert(20);
@@ -18,7 +18,7 @@ public class DemoTree {
 			System.out.print(e + " ");
 		}
 		System.out.println();
-		BinarySearchTree<String> strTree = new BinarySearchTree<>();
+		BinarySearchTree<String> strTree = new BinarySearchTree<String>();
 		strTree.insert("aa");
 		strTree.insert("bb");
 		strTree.insert("ee");

@@ -17,9 +17,9 @@ public class BinarySearchTree extends BinaryTree {
 	 */
 
 	public void insert(int data) {
-		if (!search(data)) {
-			root = insert(root, data);
-		}
+		// if (!search(data)) {
+		root = insert(root, data);
+		// }
 
 	}
 
@@ -39,13 +39,20 @@ public class BinarySearchTree extends BinaryTree {
 
 		// if given data is less than root data call recursive method for left subtree
 		if (root.data > data) {
-			root.left = insert(root.left, data);
+			Node left = insert(root.left, data);
+			left.parent = root;
+			root.left = left;
+			// root.left = insert(root.left, data);
 
 		}
 		// if given data is greater than root data call recursive method for right
 		// substree
 		else if (root.data < data) {
-			root.right = insert(root.right, data);
+			Node right = insert(root.right, data);
+			right.parent = root;
+			root.right = right;
+
+			// root.right = insert(root.right, data);
 		}
 
 		// return root node finally
@@ -158,7 +165,7 @@ public class BinarySearchTree extends BinaryTree {
 	 * return it and if tree is null than It return -1
 	 */
 
-	public int getMinValue() throws TreeIsEmptyException {
+	public int getMinValue() throws EmptyTreeException {
 		return getMinValue(root);
 	}
 
@@ -168,9 +175,9 @@ public class BinarySearchTree extends BinaryTree {
 	 * null it returns null.
 	 */
 
-	private int getMinValue(Node root) throws TreeIsEmptyException {
+	private int getMinValue(Node root) throws EmptyTreeException {
 		if (root == null) {
-			throw new TreeIsEmptyException("Tree is null");
+			throw new EmptyTreeException("Tree is null");
 		}
 		if (root.left == null) {
 			return root.data;
@@ -184,7 +191,7 @@ public class BinarySearchTree extends BinaryTree {
 	 * return it and if tree is null than It return -1
 	 */
 
-	public int getMaxValue() throws TreeIsEmptyException {
+	public int getMaxValue() throws EmptyTreeException {
 		return getMaxValue(root);
 	}
 
@@ -192,9 +199,9 @@ public class BinarySearchTree extends BinaryTree {
 	 * getMaxValuePrivate method takes input root type of Node and search the
 	 * Maximum value node of binary search tree and return it
 	 */
-	private int getMaxValue(Node root) throws TreeIsEmptyException {
+	private int getMaxValue(Node root) throws EmptyTreeException {
 		if (root == null) {
-			throw new TreeIsEmptyException("Tree is null");
+			throw new EmptyTreeException("Tree is null");
 		}
 		if (root.right == null) {
 			return root.data;
@@ -203,11 +210,11 @@ public class BinarySearchTree extends BinaryTree {
 		return getMaxValue(root.right);
 	}
 
-	public void delete(int data) throws TreeIsEmptyException {
+	public void delete(int data) throws EmptyTreeException {
 		root = delete(root, data);
 	}
 
-	private Node delete(Node root, int data) throws TreeIsEmptyException {
+	private Node delete(Node root, int data) throws EmptyTreeException {
 
 		if (root == null) {
 			return root;

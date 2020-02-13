@@ -3,14 +3,25 @@ package org.datastructure.tree;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is BinaryRadixTree. it works only for Binary(0 and 1) strings. It has
+ * tree methods insert, search and getSorted. insert: it takes a string
+ * parameter and adds string into the tree. if the string already exist, it do
+ * not add it leave as it is. search: it takes string parameter and checks it,
+ * if it exists return true else false. getSorted: it just returns
+ * List(ArrayList<String>) of Keys
+ * 
+ * 
+ */
 public class BinaryRadixTree {
-	RadixNode root = new RadixNode("");
+	private RadixNode root = new RadixNode();
+
 	private char oneChar = '1';
-	/// private char zeroChar = '0';
+	private char zeroChar = '0';
 
 	/**
-	 * This insert a binary string into the BinaryRadixTree. It takes a string type
-	 * parameter for binary string
+	 * it takes a string parameter and adds string into the tree. if the string
+	 * already exist, it do not add it leave as it is.
 	 */
 	public void insert(String str) {
 		String data = "";
@@ -22,13 +33,13 @@ public class BinaryRadixTree {
 
 				if (current.right == null) {
 
-					current.right = new RadixNode(data);
+					current.right = new RadixNode();
 
 				}
 				current = current.right;
 			} else {
 				if (current.left == null) {
-					current.left = new RadixNode(data);
+					current.left = new RadixNode();
 				}
 				current = current.left;
 			}
@@ -38,62 +49,68 @@ public class BinaryRadixTree {
 
 	}
 
+	/**
+	 * it takes string parameter and checks it, if it exists return true else false.
+	 **/
+
 	public boolean search(String str) {
+
+		// String empty return root flag
 		if (str == "") {
 			return root.flag;
 		}
+
+		// root assigns current variable
 		RadixNode current = root;
+		// run loop until , finds null or 0 to less than string length
 		for (int index = 0; index < str.length(); index++) {
+			// current is null return false;
 			if (current == null) {
 				return false;
 			}
+			// move right subtree
 			if (str.charAt(index) == oneChar) {
+
 				current = current.right;
-			} else {
+			}
+			// moves to left subtree
+			else {
+
 				current = current.left;
 			}
 		}
 
-		if (str.equals(current.data) && current.flag) {
-			return true;
-		}
-		return false;
+		// current flag
+		return current.flag;
 	}
 
-	public List<String> getPreOrder() {
-		// Creating ArrayList object type Integer
-		List<String> arr = new ArrayList<>();
+	/**
+	 * it traversals the whole tree and returns List(ArrayList<String>) of Keys
+	 */
+	public List<String> getSorted() {
+		String data = "";
+		return getSorted(root, data);
 
-		// creating currentNode and assigning root to currentNode
-		RadixNode current = root;
-		// checking currentNode is null return empty list
-		if (current == null) {
+	}
+
+	private List<String> getSorted(RadixNode root, String data) {
+		List<String> arr = new ArrayList<>();
+		if (root == null) {
 			return arr;
 		}
-		try {
-			// creating s Stack object type of Node
-			Stack<RadixNode> s = new Stack<>();
-			s.push(current);
 
-			// running a loop until whole tree is not visited
-			while (!s.isEmpty()) {
-				RadixNode temp = s.pop();
-				if (temp.flag)
-					arr.add(temp.data);
-				if (temp.right != null) {
-					s.push(temp.right);
-				}
-				if (temp.left != null) {
-					s.push(temp.left);
-				}
-
-			}
-
-		} catch (Exception e) {
-			System.out.print(e);
+		// existed keys add into the ListArray
+		if (root.flag) {
+			arr.add(data);
 		}
+		// traversals left subtree
+		arr.addAll(getSorted(root.left, data + 0));
+
+		// traversals right subtree
+		arr.addAll(getSorted(root.right, data + 1));
 
 		return arr;
+
 	}
 
 }

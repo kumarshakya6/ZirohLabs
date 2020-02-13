@@ -1,4 +1,4 @@
-/**
+/*//TODO: add comments in this class 
  * 
  */
 package org.datastructure.generic;
@@ -7,16 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Shakya
- *
+ * @author Shakya This class This class represents binary tree class
  */
 public class BinaryTree<T extends Comparable<T>> {
 
-	Node<T> root;
+	protected Node<T> root;
 
 	/**
-	 * getInOrder() method traverses the Binary Tree in InOrder and returns List of
-	 * elements of the Binary Tree
+	 * This method traverses the Binary Tree in InOrder and returns List of elements
+	 * of the Binary Tree
 	 */
 
 	public List<T> getInOrder() {
@@ -24,19 +23,19 @@ public class BinaryTree<T extends Comparable<T>> {
 		// Creating ArrayList object type Integer
 		List<T> arr = new ArrayList<T>();
 
-		// creating currentNode and assigning root to currentNode
+		// Creating currentNode and assigning root to currentNode
 		Node<T> currentNode = root;
-		// checking currentNode is null return empty list
+		// Checking currentNode is null return empty list
 		if (currentNode == null) {
 			return arr;
 		}
 		try {
-			// creating s Stack object type of Node
+			// Creating s Stack object type of Node
 			Stack<Node<T>> s = new Stack<Node<T>>();
-			// creating done variable type of boolean and assign false
+			// Creating done variable type of boolean and assign false
 			boolean done = false;
 
-			// running a loop until whole tree is not visited
+			// Running a loop until whole tree is not visited
 			while (!done) {
 
 				if (currentNode != null) {
@@ -68,18 +67,18 @@ public class BinaryTree<T extends Comparable<T>> {
 		// Creating ArrayList object type Integer
 		List<T> arr = new ArrayList<T>();
 
-		// creating currentNode and assigning root to currentNode
+		// Creating currentNode and assigning root to currentNode
 		Node<T> currentNode = root;
-		// checking currentNode is null return empty list
+		// Checking currentNode is null return empty list
 		if (currentNode == null) {
 			return arr;
 		}
 		try {
-			// creating s Stack object type of Node
+			// Creating s Stack object type of Node
 			Stack<Node<T>> s = new Stack<Node<T>>();
 			s.push(currentNode);
 
-			// running a loop until whole tree is not visited
+			// Running a loop until whole tree is not visited
 			while (!s.isEmpty()) {
 				Node<T> temp = s.pop();
 				arr.add(temp.data);
@@ -102,23 +101,24 @@ public class BinaryTree<T extends Comparable<T>> {
 	/**
 	 * This is post order traversal method . It calls private travelPostOrder method
 	 */
+
 	public List<T> getPostOrder() {
 		// Creating ArrayList object type Integer
 		List<T> arr = new ArrayList<T>();
 
-		// creating currentNode and assigning root to currentNode
+		// Creating currentNode and assigning root to currentNode
 
-		// checking currentNode is null return empty list
+		// Checking currentNode is null return empty list
 		if (root == null) {
 			return arr;
 		}
 		try {
-			// creating s Stack object type of Node
+			// Creating s Stack object type of Node
 			Stack<Node<T>> s = new Stack<Node<T>>();
 			s.push(root);
 			Node<T> prev = null;
 
-			// running a loop until whole tree is not visited
+			// Running a loop until whole tree is not visited
 			while (!s.isEmpty()) {
 				Node<T> curr = s.getPeek();
 

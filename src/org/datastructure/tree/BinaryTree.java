@@ -20,7 +20,7 @@ public class BinaryTree {
 	 * TreeIsEmptyException.
 	 */
 
-	public List<Integer> getLargestSumBranch() throws TreeIsEmptyException {
+	public List<Integer> getLargestSumBranch() throws EmptyTreeException {
 
 		if (root != null) {
 			// getLargestSumBranch() method returns a Branch type object
@@ -30,7 +30,7 @@ public class BinaryTree {
 		}
 
 		// if tree do not has any node than throw TreeIsEmptyException
-		throw new TreeIsEmptyException("Tree is empty");
+		throw new EmptyTreeException("Tree is empty");
 	}
 
 	// getLargestSumBranch() finds largest sum of branch and return Branch Object
@@ -92,12 +92,12 @@ public class BinaryTree {
 	 * Largest sum of a branch.
 	 */
 
-	public int getLargestSumOfBranch() throws TreeIsEmptyException {
+	public int getLargestSumOfBranch() throws EmptyTreeException {
 
 		if (root != null)
 			return getLargestSumOfBranch(root);
 
-		throw new TreeIsEmptyException("Tree is empty");
+		throw new EmptyTreeException("Tree is empty");
 	}
 
 	private int getLargestSumOfBranch(Node root) {
@@ -112,11 +112,11 @@ public class BinaryTree {
 	/**
 	 * Smallest sum of a branch.
 	 */
-	public int getSmallestSumOfBranch() throws TreeIsEmptyException {
+	public int getSmallestSumOfBranch() throws EmptyTreeException {
 		if (root != null)
 			return getSmallestSumOfBranch(root);
 
-		throw new TreeIsEmptyException("Tree is Empty");
+		throw new EmptyTreeException("Tree is Empty");
 	}
 
 	private int getSmallestSumOfBranch(Node root) {

@@ -13,7 +13,7 @@ import java.util.List;
 public class Stack<T> {
 	private int top = -1;
 
-	List<T> s = new ArrayList<>();
+	List<T> s = new ArrayList<T>();
 
 	public void push(T data) throws StackOverFlowException {
 		pushPrivate(data);
