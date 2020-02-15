@@ -9,7 +9,7 @@ package oops.tree;
  */
 public class LeafNode extends Node {
 
-	LeafNode parent;
+	Node parent;
 
 	public LeafNode(int data) {
 		super(data);
