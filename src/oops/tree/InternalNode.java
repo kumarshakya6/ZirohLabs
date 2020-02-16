@@ -5,7 +5,7 @@ public class InternalNode extends Node {
 
 	public InternalNode(int data) {
 		super(data);
-		parent = null;
+		parent = left = right = null;
 
 	}
 

@@ -16,32 +16,52 @@ public class BST /* extends Tree */ {
 	protected List<Integer> elements;
 
 	///// @Override
+	/**
+	 * This method takes one parameter integer type and adds element into the tree
+	 * 
+	 * @param data
+	 */
 	public void insert(int data) {
+		// Root null,create RootNode and return it
 		if (root == null) {
 			root = new RootNode(data);
 			return;
 		}
+		// Root not null call insert recursive method with two parameters root and data
 		root = insert(root, data);
 	}
 
+	// Define insert recursive method
 	private Node insert(Node current, int data) {
+
+		// Data exist return
 		if (current.data == data) {
 			return current;
 		}
+
+		// Node is LeafNode
 		if (current instanceof LeafNode) {
-			current = new InternalNode(current.data);
+			// Converts Leaf Node to Internal Node
+			current = leafToInternal((LeafNode) current);
+
+			// Left subtree
 			if (current.data > data) {
 				((InternalNode) current).left = new LeafNode(data);
-				((LeafNode) ((InternalNode) current).left).parent = current;
+				// ((LeafNode) ((InternalNode) current).left).parent = current;
 
 				return current;
+
+				// Right subtree
 			} else {
 				((InternalNode) current).right = new LeafNode(data);
 
-				((LeafNode) ((InternalNode) current).right).parent = current;
+				// ((LeafNode) ((InternalNode) current).right).parent = current;
 				return current;
 			}
+
+			// Node is RootNode
 		} else if (current instanceof RootNode) {
+			// Left subtree
 			if (current.data > data) {
 				if (((RootNode) current).left != null) {
 					((RootNode) current).left = insert(((RootNode) current).left, data);
@@ -51,6 +71,7 @@ public class BST /* extends Tree */ {
 					return current;
 				}
 
+				// Right subtree
 			} else {
 				if (((RootNode) current).right != null) {
 					((RootNode) current).right = insert(((RootNode) current).right, data);
@@ -60,23 +81,27 @@ public class BST /* extends Tree */ {
 					return current;
 				}
 			}
-		} else {
+
+			// Node is InternalNode
+		} else if (current instanceof InternalNode) {
+			// Left subtree
 			if (current.data > data) {
 				if (((InternalNode) current).left != null) {
 					((InternalNode) current).left = insert(((InternalNode) current).left, data);
 				} else {
-					((InternalNode) current).left = (new LeafNode(data).parent = current);
+					((InternalNode) current).left = new LeafNode(data);
 
 					return current;
 
 				}
 
+				// Right subtree
 			} else {
 				if (((InternalNode) current).right != null) {
 					((InternalNode) current).right = insert(((InternalNode) current).right, data);
 
 				} else {
-					((InternalNode) current).right = (new LeafNode(data).parent = current);
+					((InternalNode) current).right = new LeafNode(data);
 
 					return current;
 				}
@@ -84,6 +109,16 @@ public class BST /* extends Tree */ {
 		}
 
 		return current;
+	}
+
+	// Conversion method LeafNode to InternalNode
+	InternalNode leafToInternal(LeafNode leaf) {
+		return new InternalNode(leaf.data);
+	}
+
+	// Node conversion method InternalNode to LeafNode
+	LeafNode internalToLeaf(InternalNode internal) {
+		return new LeafNode(internal.data);
 	}
 
 	/**
@@ -95,46 +130,56 @@ public class BST /* extends Tree */ {
 	 */
 
 	public boolean search(int data) {
-		if (root == null) {
-			return false;
-		}
+
 		return search(root, data);
 	}
 
 	private boolean search(Node current, int data) {
+
+		// BASE CASE
+		// Current Node is null return false
+		if (current == null) {
+			return false;
+		}
+		// BASE CASE
 		if (current.data == data) {
 			return true;
 		}
+		// BASE CASE
 		if (current instanceof LeafNode) {
 			return false;
 		}
 
+		// Recursive CASE for Left subtree
+		// Check Leaf subtree
 		if (current.data > data) {
 
+			// Current is RootNode
 			if (current instanceof RootNode) {
-				if (((RootNode) current).left != null) {
-					return search(((RootNode) current).left, data);
-				}
-			} else if (current instanceof InternalNode) {
-				if (((InternalNode) current).left != null) {
-					return search(((InternalNode) current).left, data);
-				}
+
+				return search(((RootNode) current).left, data);
+
+			} else {
+
+				return search(((InternalNode) current).left, data);
+
 			}
 
+			// Recursive CASE for Right subtree
 		} else {
 			if (current instanceof RootNode) {
-				if (((RootNode) current).right != null) {
-					return search(((RootNode) current).right, data);
-				}
-			} else if (current instanceof InternalNode) {
-				if (((InternalNode) current).right != null) {
-					return search(((InternalNode) current).right, data);
-				}
+
+				return search(((RootNode) current).right, data);
+
+			} else {
+
+				return search(((InternalNode) current).right, data);
+
 			}
 
 		}
 
-		return false;
+		// return false;
 
 	}
 
@@ -155,6 +200,16 @@ public class BST /* extends Tree */ {
 
 	// This is delete method using recursion
 	private Node delete(Node current, int data) {
+
+		if (current instanceof LeafNode && current.data == data) {
+			current = null;
+			return current;
+		}
+		if (current instanceof RootNode && current.data == data && ((RootNode) current).left == null
+				&& ((RootNode) current).right == null) {
+			current = null;
+			return current;
+		}
 
 		// If data is less than current data move left subtree
 		if (current.data > data) {
@@ -179,13 +234,16 @@ public class BST /* extends Tree */ {
 			// If Node is LeafNode
 			if (current instanceof LeafNode) {
 				current = null;
+				return current;
 
 				// If Node is RootNode
 			} else if (current instanceof RootNode) {
 				if (((RootNode) current).left == null) {
 					current = ((RootNode) current).right;
+					return current;
 				} else if (((RootNode) current).right == null) {
 					current = ((RootNode) current).left;
+					return current;
 				}
 				current.data = getMinValue(((RootNode) current).right);
 
@@ -195,18 +253,18 @@ public class BST /* extends Tree */ {
 			// If Node is InternalNode
 			else if (current instanceof InternalNode) {
 				if (((InternalNode) current).left == null) {
-					/*
-					 * This point ERROR found: oops.tree.LeafNode cannot be cast to
-					 * oops.tree.InternalNode
-					 */
-					// Node parent = ((InternalNode) current).parent;
+
+					Node parent = ((InternalNode) current).parent;
 					current = ((InternalNode) current).right;
-					// ((InternalNode) current).parent = parent;
+
+					((InternalNode) current).parent = parent;
+					return current;
 
 				} else if (((InternalNode) current).right == null) {
-					// Node parent = ((InternalNode) current).parent;
+					Node parent = ((InternalNode) current).parent;
 					current = ((InternalNode) current).left;
-					// ((InternalNode) current).parent = parent;
+					((InternalNode) current).parent = parent;
+					return current;
 				}
 
 				current.data = getMinValue(((InternalNode) current).right);
@@ -277,16 +335,19 @@ public class BST /* extends Tree */ {
 			return current.data;
 		} else if (current instanceof RootNode) {
 			if (((RootNode) current).right != null) {
-				return getMaxValue(((RootNode) current).right);
-			} else {
-				return current.data;
+				Node right = ((RootNode) current).right;
+				return getMaxValue(right);
 			}
+
+			return current.data;
+
 		} else {
 			if (((InternalNode) current).right != null) {
-				return getMaxValue(((InternalNode) current).right);
-			} else {
-				return current.data;
+				Node right = ((InternalNode) current).right;
+				return getMaxValue(right);
 			}
+			return current.data;
+
 		}
 	}
 
@@ -308,10 +369,9 @@ public class BST /* extends Tree */ {
 
 		if (current instanceof LeafNode) {
 			elements.add(current.data);
-			return;
+//			return;
 
-		}
-		if (current instanceof RootNode) {
+		} else if (current instanceof RootNode) {
 			// Visit left subtree
 			if (((RootNode) current).left != null) {
 				getInOrder(((RootNode) current).left);

@@ -1,47 +1,27 @@
 package oops.tree;
 
-import java.util.List;
-
 public class Main {
 	public static void main(String[] args) throws EmptyTreeException {
 
-		BST tree = new BST();
-		tree.insert(10);
-		tree.insert(20);
-		tree.insert(5);
-		tree.insert(25);
-		tree.insert(30);
-		tree.insert(-20);
-		tree.insert(300);
+		Node node1 = new LeafNode(10);
+		System.out.println("First one is true");
+		System.out.println(node1 instanceof LeafNode);
+		System.out.println(node1 instanceof RootNode);
+		System.out.println(node1 instanceof InternalNode);
 
-		System.out.println(tree.search(20));
+		Node node2 = new RootNode(20);
+		System.out.println("second one is true");
 
-		System.out.println("Get In Order Traversal:");
-		List<Integer> elements = tree.getInOrder();
-		System.out.println();
-		for (Integer e : elements) {
-			System.out.print(e + " ");
-		}
-		System.out.println();
-		System.out.println(tree.getMinValue());
+		System.out.println(node2 instanceof LeafNode);
+		System.out.println(node2 instanceof RootNode);
+		System.out.println(node2 instanceof InternalNode);
 
-		elements = tree.getInOrder();
-		System.out.println();
-		for (Integer e : elements) {
-			System.out.print(e + " ");
-		}
-		System.out.println(tree.getMaxValue());
+		Node node3 = new InternalNode(30);
+		System.out.println("third one is true");
 
-//		Node node = new InternalNode(10);
-//
-//		if (node instanceof RootNode) {
-//			System.out.println("This is root node");
-//		} else if (node instanceof InternalNode) {
-//			System.out.println("This is Internal node");
-//		} else if (node instanceof LeafNode) {
-//			System.out.println("This is LeafNode");
-//		}
-
+		System.out.println(node3 instanceof LeafNode);
+		System.out.println(node3 instanceof RootNode);
+		System.out.println(node3 instanceof InternalNode);
 	}
 
 }
