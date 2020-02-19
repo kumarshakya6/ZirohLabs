@@ -8,18 +8,22 @@ import java.util.List;
 
 /**
  * @author vicky
+ * 
+ *         This class has these methods: INSERT, SEARCH, DELETE,GET MINVALUE,
+ *         GET MAXVALUE, GET INORDER, GET PREORDER and GETPOSTORDER
  *
  */
-public class BST /* extends Tree */ {
 
-	protected Node root;
+public class BST {
+
+	Node root;
 	protected List<Integer> elements;
 
 	///// @Override
 	/**
 	 * This method takes one parameter integer type and adds element into the tree
 	 * 
-	 * @param data
+	 * @param key
 	 */
 	public void insert(int data) {
 		// Root null,create RootNode and return it
@@ -27,7 +31,7 @@ public class BST /* extends Tree */ {
 			root = new RootNode(data);
 			return;
 		}
-		// Root not null call insert recursive method with two parameters root and data
+		// Root not null call insert recursive method with two parameters root and key
 		root = insert(root, data);
 	}
 
@@ -46,18 +50,18 @@ public class BST /* extends Tree */ {
 
 			// Left subtree
 			if (current.data > data) {
-				((InternalNode) current).left = new LeafNode(data);
-				// ((LeafNode) ((InternalNode) current).left).parent = current;
-
-				return current;
+				Node newNode = new LeafNode(data);
+				((LeafNode) newNode).parent = current;
+				((InternalNode) current).left = newNode;
 
 				// Right subtree
 			} else {
-				((InternalNode) current).right = new LeafNode(data);
+				Node newNode = new LeafNode(data);
+				((LeafNode) newNode).parent = current;
+				((InternalNode) current).right = newNode;
 
-				// ((LeafNode) ((InternalNode) current).right).parent = current;
-				return current;
 			}
+			return current;
 
 			// Node is RootNode
 		} else if (current instanceof RootNode) {
@@ -67,7 +71,9 @@ public class BST /* extends Tree */ {
 					((RootNode) current).left = insert(((RootNode) current).left, data);
 
 				} else {
-					((RootNode) current).left = new LeafNode(data);
+					Node newNode = new LeafNode(data);
+					((LeafNode) newNode).parent = current;
+					((RootNode) current).left = newNode;
 					return current;
 				}
 
@@ -77,7 +83,9 @@ public class BST /* extends Tree */ {
 					((RootNode) current).right = insert(((RootNode) current).right, data);
 
 				} else {
-					((RootNode) current).right = new LeafNode(data);
+					Node newNode = new LeafNode(data);
+					((LeafNode) newNode).parent = current;
+					((RootNode) current).right = newNode;
 					return current;
 				}
 			}
@@ -89,7 +97,9 @@ public class BST /* extends Tree */ {
 				if (((InternalNode) current).left != null) {
 					((InternalNode) current).left = insert(((InternalNode) current).left, data);
 				} else {
-					((InternalNode) current).left = new LeafNode(data);
+					Node newNode = new LeafNode(data);
+					((LeafNode) newNode).parent = current;
+					((InternalNode) current).left = newNode;
 
 					return current;
 
@@ -101,7 +111,9 @@ public class BST /* extends Tree */ {
 					((InternalNode) current).right = insert(((InternalNode) current).right, data);
 
 				} else {
-					((InternalNode) current).right = new LeafNode(data);
+					Node newNode = new LeafNode(data);
+					((LeafNode) newNode).parent = current;
+					((InternalNode) current).right = newNode;
 
 					return current;
 				}
@@ -122,10 +134,10 @@ public class BST /* extends Tree */ {
 	}
 
 	/**
-	 * This method takes input integer type data and search it and returns boolean.
+	 * This method takes input integer type key and search it and returns boolean.
 	 * if exists returns true else false;
 	 * 
-	 * @param data
+	 * @param key
 	 * @return boolean
 	 */
 
@@ -184,10 +196,10 @@ public class BST /* extends Tree */ {
 	}
 
 	/**
-	 * This method takes one parameter integer type and fetch the given data delete
+	 * This method takes one parameter integer type and fetch the given key delete
 	 * it
 	 * 
-	 * @param data
+	 * @param key
 	 */
 
 	public void delete(int data) {
@@ -211,7 +223,7 @@ public class BST /* extends Tree */ {
 			return current;
 		}
 
-		// If data is less than current data move left subtree
+		// If key is less than current key move left subtree
 		if (current.data > data) {
 
 			if (current instanceof RootNode) {
@@ -220,7 +232,7 @@ public class BST /* extends Tree */ {
 				((InternalNode) current).left = delete(((InternalNode) current).left, data);
 			}
 
-			// If data is greater than current data move right subtree
+			// If key is greater than current key move right subtree
 		} else if (current.data < data) {
 
 			if (current instanceof RootNode) {
@@ -229,7 +241,7 @@ public class BST /* extends Tree */ {
 				((InternalNode) current).right = delete(((InternalNode) current).right, data);
 			}
 
-			// If found the data
+			// If found the key
 		} else {
 			// If Node is LeafNode
 			if (current instanceof LeafNode) {
@@ -378,7 +390,7 @@ public class BST /* extends Tree */ {
 
 			}
 
-			// Print current data
+			// Print current key
 			elements.add(current.data);
 
 			// Visit right subtree
@@ -392,7 +404,7 @@ public class BST /* extends Tree */ {
 				getInOrder(((InternalNode) current).left);
 			}
 
-			// Print current data
+			// Print current key
 			elements.add(current.data);
 
 			// Visit right subtree
@@ -427,7 +439,7 @@ public class BST /* extends Tree */ {
 		}
 		if (current instanceof RootNode) {
 
-			// Print current data
+			// Print current key
 			elements.add(current.data);
 
 			// Visit left subtree
@@ -443,7 +455,7 @@ public class BST /* extends Tree */ {
 
 		} else {
 
-			// Print current data
+			// Print current key
 			elements.add(current.data);
 
 			// Visit left subtree
@@ -495,7 +507,7 @@ public class BST /* extends Tree */ {
 				getPostOrder(((RootNode) current).right);
 			}
 
-			// Print current data
+			// Print current key
 			elements.add(current.data);
 
 		} else {
@@ -510,7 +522,7 @@ public class BST /* extends Tree */ {
 				getPostOrder(((InternalNode) current).right);
 			}
 
-			// Print current data
+			// Print current key
 			elements.add(current.data);
 		}
 

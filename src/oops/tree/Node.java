@@ -9,7 +9,7 @@ package oops.tree;
  */
 public class Node {
 
-	int data;
+	public int data;
 
 	public Node(int data) {
 		this.data = data;
