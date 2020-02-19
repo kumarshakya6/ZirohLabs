@@ -2,11 +2,11 @@ package org.datastructure.tree;
 
 public class AVLNode extends Node {
 
-	AVLNode parent;
+	int height;
 
 	public AVLNode(int data) {
 		super(data);
-		parent = null;
+		height = 1;
 	}
 
 }

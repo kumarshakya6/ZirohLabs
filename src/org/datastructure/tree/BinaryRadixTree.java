@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This is BinaryRadixTree. it works only for Binary(0 and 1) strings. It has
- * tree methods insert, search and getSorted. insert: it takes a string
+ * This is BinaryRadixTree. it works only for Search(0 and 1) strings. It has
+ * tree methods insert, Search and getSorted. insert: it takes a string
  * parameter and adds string into the tree. if the string already exist, it do
- * not add it leave as it is. search: it takes string parameter and checks it,
+ * not add it leave as it is. Search: it takes string parameter and checks it,
  * if it exists return true else false. getSorted: it just returns
  * List(ArrayList<String>) of Keys
  * 
@@ -22,6 +22,11 @@ public class BinaryRadixTree {
 	/**
 	 * it takes a string parameter and adds string into the tree. if the string
 	 * already exist, it do not add it leave as it is.
+	 */
+
+	/**
+	 * 
+	 * @param str
 	 */
 	public void insert(String str) {
 		String data = "";

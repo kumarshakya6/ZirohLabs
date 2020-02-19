@@ -7,15 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Shakya This class This class represents binary tree class
+ * @author Shakya
+ * 
+ *         This class represents binary tree class
  */
 public class BinaryTree<T extends Comparable<T>> {
 
 	protected Node<T> root;
 
 	/**
-	 * This method traverses the Binary Tree in InOrder and returns List of elements
-	 * of the Binary Tree
+	 * This method traverses the Search Tree in InOrder and returns List of elements
+	 * 
 	 */
 
 	public List<T> getInOrder() {
@@ -61,7 +63,7 @@ public class BinaryTree<T extends Comparable<T>> {
 	}
 
 	/**
-	 * travelPreOrder method prints all the tree elements preorder visit
+	 * This method traversals in PreOrder whole tree and returns List of elements
 	 */
 	public List<T> getPreOrder() {
 		// Creating ArrayList object type Integer
@@ -99,7 +101,7 @@ public class BinaryTree<T extends Comparable<T>> {
 	}
 
 	/**
-	 * This is post order traversal method . It calls private travelPostOrder method
+	 * This method traverses in Post Order whole tree . It returns List of elements
 	 */
 
 	public List<T> getPostOrder() {

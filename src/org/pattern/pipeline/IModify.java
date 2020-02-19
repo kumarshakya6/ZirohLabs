@@ -1,5 +1,6 @@
 package org.pattern.pipeline;
 
 public interface IModify {
-	String modify(String s);
+
+	public String modify(String s);
 }

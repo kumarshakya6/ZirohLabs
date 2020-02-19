@@ -4,7 +4,7 @@ import java.util.List;
 
 public class DemoTree {
 
-	public static void main(String[] args) throws TreeIsEmptyException {
+	public static void main(String[] args) throws EmptyTreeException {
 
 		BinarySearchTree<Integer> intTree = new BinarySearchTree<Integer>();
 		intTree.insert(10);

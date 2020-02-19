@@ -1,32 +1,38 @@
 package org.datastructure.tree;
 
-import java.util.Scanner;
+import java.util.List;
 
 public class DemoTree {
 
 	public static void main(String[] args) throws EmptyTreeException {
 
-		Scanner scan = new Scanner(System.in);
+		AVLTree tree = new AVLTree();
+		tree.insert(2);
+		tree.insert(5);
+		tree.insert(10);
+		tree.insert(30);
+		tree.insert(45);
+		tree.insert(50);
+		tree.insert(60);
+		System.out.println(tree.getHeight());
 
-		int a = 5;
-		int b = 8;
-		try {
-			int out = a / b;
+		List<Integer> arr = tree.getInOrder();
+		for (Integer e : arr) {
+			System.out.print(e + " ");
 
-			System.out.println(out);
-
-		} catch (ArithmeticException e) {
-			System.out.println(e);
 		}
+		System.out.println();
+		tree.delete(2);
+		tree.delete(5);
+		tree.insert(45);
+		System.out.println(tree.getHeight());
 
-		Integer g = 10;
-		Node n = new Node(10);
-		System.out.println(g.getClass() + ": this is g");
-		System.out.println(n.toString());
+		List<Integer> arr2 = tree.getInOrder();
+		for (Integer e : arr2) {
+			System.out.print(e + " ");
 
-		// System.out.println( + ": this is g");
-
-		System.out.println("This is working without exception");
+		}
+		System.out.println();
 
 //		String str[] = scan.nextLine().split(" ");
 //		BinaryRadixTree obj = new BinaryRadixTree();
@@ -55,13 +61,15 @@ public class DemoTree {
 //		System.out.println(Utility.isPrime(23));
 //		System.out.println(Utility.isPrime(35343421));
 
-//		BinarySearchTree obj = new BinarySearchTree();
-//
-//		obj.insert(12);
-//		obj.insert(5);
-//		obj.insert(20);
-//		obj.insert(17);
-//		obj.insert(50);
+		BinarySearchTree obj = new BinarySearchTree();
+
+		obj.insert(2);
+		obj.insert(5);
+		obj.insert(20);
+		obj.insert(27);
+		obj.insert(50);
+
+		System.out.println(obj.getHeight());
 //		obj.insert(9);
 //		obj.insert(40);
 //		obj.insert(100);
@@ -84,7 +92,7 @@ public class DemoTree {
 //		int temp = obj.getNumOfBranches_K_Height(2);
 //		System.out.println(temp);
 
-		scan.close();
+//		scan.close();
 
 	}
 

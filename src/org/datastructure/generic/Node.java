@@ -6,7 +6,7 @@ package org.datastructure.generic;
 /**
  * This is the node class of tree It have tree properties. left Node reference
  * variable that holds left node of tree right Node reference that holds the
- * right node of tree and data holds the key value of the Node
+ * right node of tree and key holds the key value of the Node
  */
 class Node<T> {
 	T data;
@@ -15,7 +15,7 @@ class Node<T> {
 	Node<T> left, right;
 
 	/**
-	 * This is contractor It has only one parameter that data value of node
+	 * This is contractor It has only one parameter that key value of node
 	 */
 	Node(T data) {
 		right = left = null;

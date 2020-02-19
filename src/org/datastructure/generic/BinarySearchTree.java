@@ -11,8 +11,7 @@ package org.datastructure.generic;
 public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 	/**
-	 * This insert method It has one parameter data(integer type). It adds new node
-	 * in Binary Search Tree
+	 * This method takes input T type and add element in Search Search Tree .
 	 */
 
 	public void insert(T data) {
@@ -26,8 +25,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 	/*
 	 * insertRecursion method It has two parameters one is root Node type and
-	 * another is data(integer type) and . It adds new node in Binary Search Tree
-	 * and It returns root Node of Binary Search Tree
+	 * another is key(integer type) and . It adds new node in Search Search Tree
+	 * and It returns root Node of Search Search Tree
 	 */
 
 	private Node<T> insert(Node<T> root, T data) {
@@ -38,12 +37,12 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 			return root;
 		}
 
-		// If given data is less than root data call recursive method for left subtree
+		// If given key is less than root key call recursive method for left subtree
 		if (root.data.compareTo(data) > 0) {
 			root.left = insert(root.left, data);
 
 		}
-		// If given data is greater than root data call recursive method for right
+		// If given key is greater than root key call recursive method for right
 		// Subtree
 		else if (root.data.compareTo(data) < 0) {
 			root.right = insert(root.right, data);
@@ -54,9 +53,9 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 	}
 
-	/*
-	 * This is search method is have one argument data integer type and search that
-	 * Element. If it finds the element return true else return false
+	/**
+	 * This method takes one input T type and check it exist if yes return true else
+	 * false.
 	 */
 	public boolean search(T data) {
 
@@ -66,7 +65,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 	/*
 	 * searchPrivate method is have two argument. one is root(Node type) and another
-	 * is data(integer type) and search that element. If it finds the element return
+	 * is key(integer type) and Search that element. If it finds the element return
 	 * Node else return null
 	 */
 	private boolean search(Node<T> root, T data) {
@@ -84,12 +83,17 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 		}
 	}
 
-	public void delete(T data) throws TreeIsEmptyException {
+	/**
+	 * This method takes input T type and delete input element if exist and throws
+	 * EmptyTreeException.
+	 */
+
+	public void delete(T data) throws EmptyTreeException {
 
 		root = delete(root, data);
 	}
 
-	private Node<T> delete(Node<T> root, T data) throws TreeIsEmptyException {
+	private Node<T> delete(Node<T> root, T data) throws EmptyTreeException {
 
 		if (root == null) {
 			return root;
@@ -118,9 +122,9 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 	}
 
-	private Node<T> getMinValue(Node<T> root) throws TreeIsEmptyException {
+	private Node<T> getMinValue(Node<T> root) throws EmptyTreeException {
 		if (root == null) {
-			throw new TreeIsEmptyException("Tree is null");
+			throw new EmptyTreeException("Tree is null");
 		}
 		if (root.left == null) {
 			return root;
@@ -134,38 +138,38 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 	 * of given node
 	 */
 
-//	private int getHeightGivenNode(Node root, int data) {
+//	private int getHeightGivenNode(Node root, int key) {
 //		if (root == null)
 //			return -1;
 //
-//		if (root.data == data) {
+//		if (root.data == key) {
 //			return 0;
 //		}
 //
-//		if (root.data < data) {
-//			return 1 + getHeightGivenNode(root.right, data);
+//		if (root.data < key) {
+//			return 1 + getHeightGivenNode(root.right, key);
 //		} else {
-//			return 1 + getHeightGivenNode(root.left, data);
+//			return 1 + getHeightGivenNode(root.left, key);
 //		}
 //	}
 //
-//	public int getLeftMostSibling(int data) {
-//		int height = getHeightGivenNode(root, data);
-//		return getLeftMostSibling(root, data, height);
+//	public int getLeftMostSibling(int key) {
+//		int height = getHeightGivenNode(root, key);
+//		return getLeftMostSibling(root, key, height);
 //
 //	}
 //
-//	private int getLeftMostSibling(Node root, int data, int height) {
-//		if (height == 0 && data != root.data) {
+//	private int getLeftMostSibling(Node root, int key, int height) {
+//		if (height == 0 && key != root.data) {
 //
 //			return root.data;
 //		} else if (height > -1) {
 //
 //			if (root.right != null) {
-//				return getLeftMostSibling(root.right, data, height - 1);
+//				return getLeftMostSibling(root.right, key, height - 1);
 //			}
 //			if (root.left != null) {
-//				return getLeftMostSibling(root.left, data, height - 1);
+//				return getLeftMostSibling(root.left, key, height - 1);
 //			}
 //		}
 //
@@ -173,26 +177,26 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 //	}
 //
 //	/**
-//	 * This method is get the given data Right most sibling if exists else return
+//	 * This method is get the given key Right most sibling if exists else return
 //	 * -1;
 //	 */
-//	public int getRightMostSibling(int data) {
+//	public int getRightMostSibling(int key) {
 //		int height = getHeight();
-//		return getRightMostSibling(root, data, height);
+//		return getRightMostSibling(root, key, height);
 //
 //	}
 //
-//	private int getRightMostSibling(Node root, int data, int height) {
+//	private int getRightMostSibling(Node root, int key, int height) {
 //
-//		if (height == 0 && data != root.data) {
+//		if (height == 0 && key != root.data) {
 //
 //			return root.data;
 //		} else if (height > -1) {
 //			if (root.right != null) {
-//				return getRightMostSibling(root.right, data, height - 1);
+//				return getRightMostSibling(root.right, key, height - 1);
 //			}
 //			if (root.left != null) {
-//				return getRightMostSibling(root.left, data, height - 1);
+//				return getRightMostSibling(root.left, key, height - 1);
 //			}
 //		}
 //
@@ -201,7 +205,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 //	}
 //
 //	/*
-//	 * findMinValueNode method search the minimum value of binary search tree and
+//	 * findMinValueNode method Search the minimum value of binary Search tree and
 //	 * return it and if tree is null than It return -1
 //	 */
 //
@@ -210,15 +214,15 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 //	}
 //
 //	/*
-//	 * findMinValueNodePrivate method takes input root type of Node and search the
-//	 * minimum value node of binary search tree and return it and if the tree is
+//	 * findMinValueNodePrivate method takes input root type of Node and Search the
+//	 * minimum value node of binary Search tree and return it and if the tree is
 //	 * null it returns null.
 //	 */
 //
 
 //
 //	/*
-//	 * findMaxValueNode method search the Maximum value of binary search tree and
+//	 * findMaxValueNode method Search the Maximum value of binary Search tree and
 //	 * return it and if tree is null than It return -1
 //	 */
 //
@@ -227,8 +231,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 //	}
 //
 //	/*
-//	 * getMaxValuePrivate method takes input root type of Node and search the
-//	 * Maximum value node of binary search tree and return it
+//	 * getMaxValuePrivate method takes input root type of Node and Search the
+//	 * Maximum value node of binary Search tree and return it
 //	 */
 //	private Integer getMaxValue(Node root) throws TreeIsEmptyException {
 //		if (root == null) {
@@ -246,10 +250,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 	 * 
 	 * This code for insert duplicate
 	 */
-//	  private void insertPrivate(int data) {
+//	  private void insertPrivate(int key) {
 //		Node parent = null;
 //		Node current = root;
-//		Node newNode = new Node(data);
+//		Node newNode = new Node(key);
 //		if (root == null) {
 //			root = newNode;
 //			return;
@@ -257,7 +261,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 //
 //		while (current != null) {
 //			parent = current;
-//			if (current.data > data) {
+//			if (current.data > key) {
 //
 //				current = current.left;
 //			} else {
@@ -265,7 +269,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 //			}
 //		}
 //
-//		if (parent.data > data) {
+//		if (parent.data > key) {
 //			parent.left = newNode;
 //
 //		} else {

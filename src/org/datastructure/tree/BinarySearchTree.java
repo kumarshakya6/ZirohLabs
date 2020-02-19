@@ -6,18 +6,21 @@ package org.datastructure.tree;
 /**
  * @author vicky
  *
- *         This is BinarySearchTree
+ *         This class inherit the BinaryTree class and Override INSERT, DELETE
+ *         method and also added new GET MIN VALUE, GET MAX VALUE,
  */
 
 public class BinarySearchTree extends BinaryTree {
 
 	/**
-	 * This insert method It has one parameter data(integer type). It adds new node
-	 * in Binary Search Tree
+	 * This method has one parameter key. It adds new value in the binary Search
+	 * Tree
+	 * 
+	 * @param key
 	 */
 
 	public void insert(int data) {
-		// if (!search(data)) {
+		// if (!Search(key)) {
 		root = insert(root, data);
 		// }
 
@@ -25,8 +28,8 @@ public class BinarySearchTree extends BinaryTree {
 
 	/*
 	 * insertRecursion method It has two parameters one is root Node type and
-	 * another is data(integer type) and . It adds new node in Binary Search Tree
-	 * and It returns root Node of Binary Search Tree
+	 * another is key(integer type) and . It adds new node in Search Search Tree
+	 * and It returns root Node of Search Search Tree
 	 */
 
 	private Node insert(Node root, int data) {
@@ -37,22 +40,22 @@ public class BinarySearchTree extends BinaryTree {
 			return root;
 		}
 
-		// if given data is less than root data call recursive method for left subtree
+		// if given key is less than root key call recursive method for left subtree
 		if (root.data > data) {
 			Node left = insert(root.left, data);
 			left.parent = root;
 			root.left = left;
-			// root.left = insert(root.left, data);
+			// root.left = insert(root.left, key);
 
 		}
-		// if given data is greater than root data call recursive method for right
+		// if given key is greater than root key call recursive method for right
 		// substree
 		else if (root.data < data) {
 			Node right = insert(root.right, data);
 			right.parent = root;
 			root.right = right;
 
-			// root.right = insert(root.right, data);
+			// root.right = insert(root.right, key);
 		}
 
 		// return root node finally
@@ -60,8 +63,14 @@ public class BinarySearchTree extends BinaryTree {
 
 	}
 
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+
 	/*
-	 * This is search method is have one argument data integer type and search that
+	 * This is Search method is have one argument key integer type and Search that
 	 * element. If it finds the element return true else return false
 	 */
 	public boolean search(int data) {
@@ -71,7 +80,7 @@ public class BinarySearchTree extends BinaryTree {
 
 	/*
 	 * searchPrivate method is have two argument. one is root(Node type) and another
-	 * is data(integer type) and search that element. If it finds the element return
+	 * is key(integer type) and Search that element. If it finds the element return
 	 * Node else return null
 	 */
 	private boolean search(Node root, int data) {
@@ -133,7 +142,7 @@ public class BinarySearchTree extends BinaryTree {
 	}
 
 	/**
-	 * This method is get the given data Right most sibling if exists else return
+	 * This method is get the given key Right most sibling if exists else return
 	 * -1;
 	 */
 	public int getRightMostSibling(int data) {
@@ -161,24 +170,24 @@ public class BinarySearchTree extends BinaryTree {
 	}
 
 	/*
-	 * findMinValueNode method search the minimum value of binary search tree and
+	 * findMinValueNode method Search the minimum value of binary Search tree and
 	 * return it and if tree is null than It return -1
 	 */
 
 	public int getMinValue() throws EmptyTreeException {
-		return getMinValue(root);
+		if (root != null)
+			return getMinValue(root);
+		throw new EmptyTreeException("Tree is null");
 	}
 
 	/*
-	 * findMinValueNodePrivate method takes input root type of Node and search the
-	 * minimum value node of binary search tree and return it and if the tree is
+	 * findMinValueNodePrivate method takes input root type of Node and Search the
+	 * minimum value node of binary Search tree and return it and if the tree is
 	 * null it returns null.
 	 */
 
-	private int getMinValue(Node root) throws EmptyTreeException {
-		if (root == null) {
-			throw new EmptyTreeException("Tree is null");
-		}
+	protected int getMinValue(Node root) {
+
 		if (root.left == null) {
 			return root.data;
 		}
@@ -187,7 +196,7 @@ public class BinarySearchTree extends BinaryTree {
 	}
 
 	/*
-	 * findMaxValueNode method search the Maximum value of binary search tree and
+	 * findMaxValueNode method Search the Maximum value of binary Search tree and
 	 * return it and if tree is null than It return -1
 	 */
 
@@ -196,8 +205,8 @@ public class BinarySearchTree extends BinaryTree {
 	}
 
 	/*
-	 * getMaxValuePrivate method takes input root type of Node and search the
-	 * Maximum value node of binary search tree and return it
+	 * getMaxValuePrivate method takes input root type of Node and Search the
+	 * Maximum value node of binary Search tree and return it
 	 */
 	private int getMaxValue(Node root) throws EmptyTreeException {
 		if (root == null) {
@@ -242,39 +251,5 @@ public class BinarySearchTree extends BinaryTree {
 		return root;
 
 	}
-	/*
-	 * **************************************************************
-	 * 
-	 * This code for insert duplicate
-	 */
-//	  private void insertPrivate(int data) {
-//		Node parent = null;
-//		Node current = root;
-//		Node newNode = new Node(data);
-//		if (root == null) {
-//			root = newNode;
-//			return;
-//		}
-//
-//		while (current != null) {
-//			parent = current;
-//			if (current.data > data) {
-//
-//				current = current.left;
-//			} else {
-//				current = current.right;
-//			}
-//		}
-//
-//		if (parent.data > data) {
-//			parent.left = newNode;
-//
-//		} else {
-//			parent.right = newNode;
-//		}
-//
-//	}
-
-	/***************************************************************/
 
 }

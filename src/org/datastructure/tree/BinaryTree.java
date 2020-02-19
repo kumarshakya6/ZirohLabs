@@ -15,11 +15,15 @@ public class BinaryTree {
 	Node root;
 
 	/**
-	 * getLargestSumBranch() method find maximum sum of branch and return List of
-	 * whole branch keys. and if tree do not has any key. It throws
-	 * TreeIsEmptyException.
+	 * This method find maximum sum of branch and return List of whole branch keys.
+	 * and if tree do not has any key. It throws TreeIsEmptyException.
 	 */
 
+	/**
+	 * 
+	 * @return
+	 * @throws EmptyTreeException
+	 */
 	public List<Integer> getLargestSumBranch() throws EmptyTreeException {
 
 		if (root != null) {
@@ -37,7 +41,7 @@ public class BinaryTree {
 	// that has
 	// largest sum branch all elements and sum of that branch.
 	private Branch getLargestSumBranch(Node root) {
-		// creates a branch class object with root node data ;
+		// creates a branch class object with root node key ;
 		Branch branchOutput = new Branch(root.data, root.data);
 
 		// if tree has only root node returns
@@ -131,8 +135,8 @@ public class BinaryTree {
 	}
 
 	/**
-	 * getInOrder() method traverses the Binary Tree in InOrder and returns List of
-	 * elements of the Binary Tree
+	 * getInOrder() method traverses the Search Tree in InOrder and returns List of
+	 * elements of the Search Tree
 	 */
 
 	public List<Integer> getInOrder() {
@@ -265,7 +269,7 @@ public class BinaryTree {
 	}
 
 	/*
-	 * countNodes method counts the number of node in the binary search tree and
+	 * countNodes method counts the number of node in the binary Search tree and
 	 * return the count of nodes
 	 */
 	public int countNodes() {
@@ -273,8 +277,8 @@ public class BinaryTree {
 	}
 
 	/*
-	 * countNodesPrivate method takes input root of binary search tree and counts
-	 * the number of node in the binary search tree and return the count of nodes
+	 * countNodesPrivate method takes input root of binary Search tree and counts
+	 * the number of node in the binary Search tree and return the count of nodes
 	 */
 	private int countNodesPrivate(Node root) {
 		if (root == null) {
@@ -287,7 +291,7 @@ public class BinaryTree {
 		return countNodesPrivate(root.left) + countNodesPrivate(root.right);
 	}
 	/*
-	 * countLeafNode counts the number of leaf node in the binary search tree and
+	 * countLeafNode counts the number of leaf node in the binary Search tree and
 	 * return it
 	 */
 
@@ -296,7 +300,7 @@ public class BinaryTree {
 	}
 
 	/*
-	 * countLeafNodePrivate method takes input root of binary search tree , count
+	 * countLeafNodePrivate method takes input root of binary Search tree , count
 	 * the number of branches in it and return count of branches .
 	 */
 	private int countLeafNodesPrivate(Node root) {
@@ -311,7 +315,7 @@ public class BinaryTree {
 	}
 
 	/*
-	 * countBranches count the number of branches in the binary search tree and
+	 * countBranches count the number of branches in the binary Search tree and
 	 * return it
 	 */
 	public int countBranches() {
@@ -319,7 +323,7 @@ public class BinaryTree {
 	}
 
 	/*
-	 * countBranchesPrivate method takes input root of binary search tree , count
+	 * countBranchesPrivate method takes input root of binary Search tree , count
 	 * the number of branches in it and return count of branches .
 	 */
 	private int countBranches(Node root) {
@@ -346,7 +350,7 @@ public class BinaryTree {
 	}
 
 	/*
-	 * countHeight method counts the height of the binary search tree and return it
+	 * countHeight method counts the height of the binary Search tree and return it
 	 */
 
 	public int getHeight() {
@@ -354,8 +358,8 @@ public class BinaryTree {
 	}
 
 	/*
-	 * countHeight method takes input root of the binary search tree and counts the
-	 * height of the binary search tree and return it
+	 * countHeight method takes input root of the binary Search tree and counts the
+	 * height of the binary Search tree and return it
 	 */
 	private int countHeightPrivate(Node root) {
 
@@ -393,7 +397,7 @@ public class BinaryTree {
 
 	/**
 	 * getNumOfBranches_K_Height method takes height of branches parameter integer
-	 * type and count the Number of branches with height as a given input and return
+	 * type and count the IOperator of branches with height as a given input and return
 	 * number of branches integer type in the tree
 	 * 
 	 */
@@ -420,7 +424,7 @@ public class BinaryTree {
 
 	/**
 	 * getNumOfBranches_Less_K_Height method takes height of branches parameter
-	 * integer type and count the Number of branches with height as a given input
+	 * integer type and count the IOperator of branches with height as a given input
 	 * and return number of branches integer type in the tree
 	 * 
 	 */
@@ -448,7 +452,7 @@ public class BinaryTree {
 
 	/**
 	 * getNumOfBranches_Greater_K_Height method takes height of branches parameter
-	 * integer type and count the Number of branches greater height as a given input
+	 * integer type and count the IOperator of branches greater height as a given input
 	 * and return number of branches integer type in the tree
 	 * 
 	 */
