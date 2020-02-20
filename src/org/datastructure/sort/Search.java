@@ -2,27 +2,30 @@ package org.datastructure.sort;
 
 public class Search {
 
-	public int binarySearch(int a[], int key) {
-		int leftBound = 0;
-		int rightBound = a.length;
-		int mid = -1;
-		mid = (leftBound + rightBound) / 2;
-		if (mid > 0)
-			while (leftBound < rightBound) {
+	public static int searchIndex(int a[], int key, int lowerBound, int upperBound) {
 
-				if (a[mid] == key) {
-					return mid;
-				} else if (a[mid] < key) {
-					leftBound = mid + 1;
-				} else {
-					rightBound = mid - 1;
-				}
+		if (upperBound <= lowerBound) {
+			return (key > a[lowerBound]) ? (lowerBound + 1) : lowerBound;
+		}
 
-				mid = (leftBound + rightBound) / 2;
-			}
+		int mid = (lowerBound + upperBound) / 2;
+		if (a[mid] == key) {
+			return mid + 1;
+		}
 
-		return mid;
+		if (a[mid] < key) {
+			return searchIndex(a, key, mid + 1, upperBound);
+		} else {
+			return searchIndex(a, key, lowerBound, mid - 1);
+		}
 
+	}
+
+	public void printArray(int arr[]) {
+		for (int e : arr) {
+			System.out.print(e + " ");
+		}
+		System.out.println();
 	}
 
 }
