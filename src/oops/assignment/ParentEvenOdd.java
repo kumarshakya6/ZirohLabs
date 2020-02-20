@@ -2,11 +2,11 @@ package oops.assignment;
 
 public class ParentEvenOdd implements IOperator {
 
-	// Seccessor for next method call
+	// Successor for next method call
 	IOperator successor;
 
 	@Override
-	public int[] checkNumber(int... a) {
+	public void checkNumber(int... a) {
 
 		int keyOfParent = a[2];
 		int keyOfParentOfParent = a[3];
@@ -23,7 +23,6 @@ public class ParentEvenOdd implements IOperator {
 				System.out.println("Odd and Odd");
 			}
 
-		return a;
 	}
 
 	@Override

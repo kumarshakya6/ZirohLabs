@@ -12,7 +12,7 @@ public class Prime implements IOperator {
 
 	}
 
-	public int[] checkNumber(int... a) {
+	public void checkNumber(int... a) {
 		int key = a[0];
 		if (isPrime(key)) {
 			System.out.println(key + " is prime ");
@@ -20,9 +20,7 @@ public class Prime implements IOperator {
 			System.out.println(key + " is not prime ");
 		}
 		if (successor != null) {
-			return successor.checkNumber(a);
-		} else {
-			return a;
+			successor.checkNumber(a);
 		}
 	}
 

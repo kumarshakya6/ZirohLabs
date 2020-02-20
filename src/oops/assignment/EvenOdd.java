@@ -12,7 +12,7 @@ public class EvenOdd implements IOperator {
 
 	}
 
-	public int[] checkNumber(int... a) {
+	public void checkNumber(int... a) {
 		int key = a[0];
 		if (isEven(key)) {
 			System.out.println(key + " is even");
@@ -20,9 +20,7 @@ public class EvenOdd implements IOperator {
 			System.out.println(key + " is odd");
 		}
 		if (successor != null) {
-			return successor.checkNumber(a);
-		} else {
-			return a;
+			successor.checkNumber(a);
 		}
 	}
 

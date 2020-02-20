@@ -1,14 +1,14 @@
 package oops.assignment;
 
-public class Pipeline {
+class Pipeline {
 
 	IOperator pipe;
 
-	public Pipeline(IOperator pipe) {
+	Pipeline(IOperator pipe) {
 		this.pipe = pipe;
 	}
 
-	public void excute(int... a) {
+	void excute(int... a) {
 		pipe.checkNumber(a);
 	}
 }

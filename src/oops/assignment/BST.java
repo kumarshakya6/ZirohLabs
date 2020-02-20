@@ -21,9 +21,8 @@ public class BST {
 	protected List<Integer> elements;
 
 	// Variable for pipeline
-
-	protected int keyOfParent = 0;
-	protected int keyOfParentOfParent = 0;
+	int keyOfParent = 0;
+	int keyOfParentOfParent = 0;
 
 	///// @Override
 	/**
@@ -35,14 +34,23 @@ public class BST {
 		// Root null,create RootNode and return it
 		if (root == null) {
 			root = new RootNode(key, pipe);
-			return;
-		}
-		// Root not null call insert recursive method with two parameters root and key
-		root = insert(root, key, pipe);
+
+			// Root not null call insert recursive method with two parameters root and key
+		} else
+			root = insert(root, key, pipe);
+		// Re initialize the keyOfParent and keyOfParentOfParent variable
+		keyOfParent = 0;
+		keyOfParentOfParent = 0;
+
 	}
 
 	// Define insert recursive method
 	private Node insert(Node current, int key, IOperator pipe) {
+
+		// Data exist return
+		if (current.key == key) {
+			return current;
+		}
 
 		// Pipeline code written here:
 		// Create Pipeline object
@@ -59,15 +67,10 @@ public class BST {
 			keyOfParent = current.key;
 		}
 
-		// Data exist return
-		if (current.key == key) {
-			return current;
-		}
-
 		// Node is LeafNode
 		if (current instanceof LeafNode) {
 			// Converts Leaf Node to Internal Node
-			current = leafToInternal((LeafNode) current);
+			current = current.toInternalNode();
 
 			// Left subtree
 			if (current.key > key) {
@@ -144,17 +147,6 @@ public class BST {
 		return current;
 	}
 
-	// TODO there is two error, I have to handle it
-	// Conversion method LeafNode to InternalNode
-	InternalNode leafToInternal(LeafNode leaf) {
-		return new InternalNode(leaf.key, leaf.pipe);
-	}
-
-	// Node conversion method InternalNode to LeafNode
-	LeafNode internalToLeaf(InternalNode internal) {
-		return new LeafNode(internal.key, internal.pipe);
-	}
-
 	/**
 	 * This method takes input integer type key and search it and returns boolean.
 	 * if exists returns true else false;
@@ -178,6 +170,21 @@ public class BST {
 		// BASE CASE
 		if (current.key == key) {
 			return true;
+		}
+
+		// Pipeline code written here:
+		// Create Pipeline object
+		Pipeline operator = new Pipeline(current.pipe);
+
+		// Call EXCUTE method
+		operator.excute(key, current.key, keyOfParent, keyOfParentOfParent);
+		System.out.println("*********************************************");
+
+		if (keyOfParent == 0) {
+			keyOfParent = current.key;
+		} else {
+			keyOfParentOfParent = keyOfParent;
+			keyOfParent = current.key;
 		}
 		// BASE CASE
 		if (current instanceof LeafNode) {
@@ -212,8 +219,6 @@ public class BST {
 			}
 
 		}
-
-		// return false;
 
 	}
 
@@ -312,7 +317,7 @@ public class BST {
 		// If InternalNode has both left and right null than makes it LeafNode
 		if (current instanceof InternalNode) {
 			if (((InternalNode) current).left == null && ((InternalNode) current).right == null) {
-				current = new LeafNode(current.key, current.pipe);
+				current = current.toLeafNode();
 			}
 
 		}

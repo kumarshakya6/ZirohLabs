@@ -14,7 +14,7 @@ public class CoPrime implements IOperator {
 
 	}
 
-	public int[] checkNumber(int... a) {
+	public void checkNumber(int... a) {
 		int key = a[0];
 		int keyOfNode = a[1];
 		if (isCoPrime(key, keyOfNode)) {
@@ -24,9 +24,7 @@ public class CoPrime implements IOperator {
 			System.out.println(key + " and " + keyOfNode + " " + "numbers are not Co-Prime");
 		}
 		if (successor != null) {
-			return successor.checkNumber(a);
-		} else {
-			return a;
+			successor.checkNumber(a);
 		}
 	}
 
@@ -42,6 +40,6 @@ public class CoPrime implements IOperator {
 		if (b == 0) {
 			return a;
 		}
-		return gcd(b, a % b);
+		return gcd(b, a / b);
 	}
 }
